@@ -22,14 +22,6 @@
 				<updatePolicy>always</updatePolicy>
 			</snapshots>
 		</repository>
-		<repository>
-			<id>spout-repo</id>
-			<url>http://repo.spout.org</url>
-			<snapshots>
-				<enabled>true</enabled>
-				<updatePolicy>always</updatePolicy>
-			</snapshots>
-		</repository>
 	</repositories
 			>
 	<distributionManagement>
@@ -87,24 +79,6 @@
 		<finalName>${project.artifactId}</finalName>
 
 		<plugins>
-			<!-- Version strip plugin -->
-			<plugin>
-				<groupId>com.sourcesense.maven</groupId>
-				<artifactId>maven-nosnapshot-plugin</artifactId>
-				<version>0.0.7-SNAPSHOT</version>
-				<executions>
-					<execution>
-						<phase>initialize</phase>
-						<goals>
-							<goal>strip</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<version>${project.version}</version>
-					<propertyName>releaseVersion</propertyName>
-				</configuration>
-			</plugin>
 			<!-- Compiler plugin -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -130,7 +104,7 @@
 					<archive>
 						<manifestEntries>
 							<Main-Class>org.spout.cloudburst.Main</Main-Class>
-							<Implementation-Version>${releaseVersion} b${buildNumber}</Implementation-Version>
+							<Implementation-Version>${project.version} b${buildNumber}</Implementation-Version>
 							<Sealed>true</Sealed>
 						</manifestEntries>
 						<manifestSections>
