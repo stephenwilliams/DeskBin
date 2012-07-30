@@ -1,0 +1,112 @@
+package com.alta189.hasteclient.gui;
+
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JCheckBox;
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+
+public abstract class OptionsPanel extends JPanel {
+
+	protected GridBagConstraints fieldConstraints;
+	protected GridBagConstraints labelConstraints;
+	private JPanel groupPanel;
+
+	public OptionsPanel() {
+		fieldConstraints = new GridBagConstraints();
+		fieldConstraints.fill = GridBagConstraints.HORIZONTAL;
+		fieldConstraints.weightx = 1.0;
+		fieldConstraints.gridwidth = GridBagConstraints.REMAINDER;
+		fieldConstraints.insets = new Insets(2, 5, 2, 5);
+
+		labelConstraints = (GridBagConstraints) fieldConstraints.clone();
+		labelConstraints.weightx = 0.0;
+		labelConstraints.gridwidth = 1;
+		labelConstraints.insets = new Insets(1, 5, 1, 10);
+
+		buildUI();
+	}
+
+
+	private void buildUI() {
+		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		setOpaque(false);
+		setBorder(BorderFactory.createEmptyBorder(8, 8, 8, 8));
+
+		buildControls();
+
+		// Vertical glue not working
+		add(new Box.Filler(new Dimension(0, 0), new Dimension(0, 10000), new Dimension(0, 10000)));
+	}
+
+	protected abstract void buildControls();
+
+	public abstract void save();
+
+	/**
+	 * Create a field group and set the current active field group to the
+	 * created one.
+	 *
+	 * @param title title of group
+	 * @return field group
+	 */
+	protected JPanel createFieldGroup(String title) {
+		JPanel parent = this;
+		JPanel panel = new JPanel();
+		panel.setOpaque(false);
+		panel.setBorder(BorderFactory.createTitledBorder(title));
+		panel.setLayout(new GridBagLayout());
+		parent.add(panel);
+		groupPanel = panel;
+		return panel;
+	}
+
+	/**
+	 * Add a labeled field.
+	 *
+	 * @param label label
+	 * @param component component to add
+	 * @return the component
+	 */
+	protected <T extends Component> T addField(String label, T component) {
+		JPanel parent = groupPanel;
+		GridBagLayout layout = (GridBagLayout) parent.getLayout();
+		JLabel labelObj = new JLabel(label);
+		layout.setConstraints(labelObj, labelConstraints);
+		layout.setConstraints(component, fieldConstraints);
+		labelObj.setLabelFor(component);
+		parent.add(labelObj);
+		parent.add(component);
+
+		return component;
+	}
+
+	/**
+	 * Add a non-labeled field (like a checkbox).
+	 *
+	 * @param component component to add
+	 * @return the component
+	 */
+	protected <T extends Component> T addField(T component) {
+		JPanel parent = groupPanel;
+		if (component instanceof JComponent) {
+			((JComponent) component).setOpaque(false);
+		}
+
+		if (component instanceof JCheckBox) {
+			((JCheckBox) component).setBorder(BorderFactory.createEmptyBorder(2, 4, 2, 4));
+		}
+
+		GridBagLayout layout = (GridBagLayout) parent.getLayout();
+		layout.setConstraints(component, fieldConstraints);
+		parent.add(component);
+		return component;
+	}
+}
