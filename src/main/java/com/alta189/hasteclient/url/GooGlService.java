@@ -7,10 +7,16 @@ import java.io.IOException;
 import java.net.URL;
 
 public class GooGlService implements ShorteningService {
+	private static final String NAME = "goo.gl";
 	private final GooGl googl;
 
 	public GooGlService(String apikey) {
 		googl = new GooGl(apikey);
+	}
+
+	@Override
+	public String getName() {
+		return NAME;
 	}
 
 	@Override

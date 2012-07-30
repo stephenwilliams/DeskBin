@@ -12,9 +12,15 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 public class IsGdService implements ShorteningService {
+	private static final String NAME = "is.gd";
 	private static final String SHORTEN_URL = "http://is.gd/create.php?logstats=1&format=simple&url=";
 	private static final String EXPAND_URL = "http://is.gd/forward.php?format=simple&shorturl=";
 	private final HttpClient httpClient = new DefaultHttpClient();
+
+	@Override
+	public String getName() {
+		return NAME;
+	}
 
 	@Override
 	public String shorten(String url) throws ShortenerException {

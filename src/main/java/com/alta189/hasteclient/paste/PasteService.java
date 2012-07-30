@@ -1,6 +1,8 @@
 package com.alta189.hasteclient.paste;
 
-public interface PasteService {
+import com.alta189.hasteclient.Service;
+
+public interface PasteService extends Service {
 
 	public String paste(String content) throws PasteException;
 

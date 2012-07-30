@@ -3,10 +3,16 @@ package com.alta189.hasteclient.url;
 import com.rosaloves.bitlyj.Bitly;
 
 public class BitLyService implements ShorteningService {
+	private static final String NAME = "bit.ly";
 	private final Bitly.Provider bitly;
 
 	public BitLyService(String user, String apiKey) {
 		bitly = Bitly.as(user, apiKey);
+	}
+
+	@Override
+	public String getName() {
+		return NAME;
 	}
 
 	@Override

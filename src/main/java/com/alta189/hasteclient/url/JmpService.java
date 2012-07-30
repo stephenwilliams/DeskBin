@@ -4,10 +4,16 @@ import com.rosaloves.bitlyj.Bitly;
 import com.rosaloves.bitlyj.Jmp;
 
 public class JmpService implements ShorteningService {
+	private static final String NAME = "j.mp";
 	private Bitly.Provider jmp;
 
 	public JmpService(String user, String apiKey) {
 		jmp = Jmp.as(user, apiKey);
+	}
+
+	@Override
+	public String getName() {
+		return NAME;
 	}
 
 	@Override

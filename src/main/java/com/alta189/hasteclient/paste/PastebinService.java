@@ -9,13 +9,13 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class PastebinService extends AbstractPasteService {
-	private static final String URL = "";
+	private static final String NAME = "pastebin";
+	private static final String URL = "http://pastebin.com/api/api_post.php";
 	private final HttpClient client = new DefaultHttpClient();
 	private final String apiKey;
 
@@ -24,8 +24,13 @@ public class PastebinService extends AbstractPasteService {
 	}
 
 	@Override
+	public String getName() {
+		return NAME;
+	}
+
+	@Override
 	public String paste(String content, boolean isPrivate) throws PasteException {
-		HttpPost post = new HttpPost("http://pastebin.com/api/api_post.php");
+		HttpPost post = new HttpPost(URL);
 
 		List<NameValuePair> nvps = new ArrayList<NameValuePair>();
 		nvps.add(new BasicNameValuePair("api_dev_key", apiKey));

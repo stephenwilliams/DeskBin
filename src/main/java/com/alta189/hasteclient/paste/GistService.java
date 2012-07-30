@@ -9,10 +9,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class GistService extends AbstractPasteService {
+	private static final String NAME = "gist";
 	private final GitHubClient client;
 
 	public GistService(String oauthTokeb) {
 		client = new GitHubClient(oauthTokeb);
+	}
+
+	@Override
+	public String getName() {
+		return NAME;
 	}
 
 	@Override
