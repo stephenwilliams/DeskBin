@@ -1,4 +1,4 @@
-package com.alta189.hasteclient.gui;
+package com.alta189.deskbin.gui;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;

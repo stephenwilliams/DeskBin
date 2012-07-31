@@ -1,6 +1,6 @@
-package com.alta189.hasteclient.paste;
+package com.alta189.deskbin.paste;
 
-import com.alta189.hasteclient.Service;
+import com.alta189.deskbin.Service;
 
 public interface PasteService extends Service {
 

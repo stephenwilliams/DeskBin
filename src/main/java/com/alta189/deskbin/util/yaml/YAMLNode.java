@@ -1,4 +1,4 @@
-package com.alta189.hasteclient.util.yaml;
+package com.alta189.deskbin.util.yaml;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;

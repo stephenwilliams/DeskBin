@@ -1,6 +1,6 @@
-package com.alta189.hasteclient;
+package com.alta189.deskbin;
 
-import com.alta189.hasteclient.util.yaml.YAMLProcessor;
+import com.alta189.deskbin.util.yaml.YAMLProcessor;
 
 public class DeskHub {
 

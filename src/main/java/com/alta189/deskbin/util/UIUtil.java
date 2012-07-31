@@ -1,4 +1,4 @@
-package com.alta189.hasteclient.util;
+package com.alta189.deskbin.util;
 
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;

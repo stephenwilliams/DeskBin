@@ -1,4 +1,4 @@
-package com.alta189.hasteclient.url;
+package com.alta189.deskbin.url;
 
 import net.petersson.googl.GooGl;
 import net.petersson.googl.GooGlException;

@@ -1,4 +1,4 @@
-package com.alta189.hasteclient.paste;
+package com.alta189.deskbin.paste;
 
 public abstract class AbstractPasteService implements PasteService {
 	@Override

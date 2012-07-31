@@ -1,4 +1,4 @@
-package com.alta189.hasteclient.url;
+package com.alta189.deskbin.url;
 
 import com.rosaloves.bitlyj.Bitly;
 

@@ -1,4 +1,4 @@
-package com.alta189.hasteclient.util.yaml;
+package com.alta189.deskbin.util.yaml;
 
 import org.apache.commons.lang3.StringUtils;
 import org.yaml.snakeyaml.DumperOptions;

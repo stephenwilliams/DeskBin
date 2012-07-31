@@ -1,4 +1,4 @@
-package com.alta189.hasteclient.url;
+package com.alta189.deskbin.url;
 
 public class ShortenerException extends Exception {
 	public ShortenerException(Throwable cause) {

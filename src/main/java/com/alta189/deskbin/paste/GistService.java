@@ -1,4 +1,4 @@
-package com.alta189.hasteclient.paste;
+package com.alta189.deskbin.paste;
 
 import org.eclipse.egit.github.core.Gist;
 import org.eclipse.egit.github.core.GistFile;

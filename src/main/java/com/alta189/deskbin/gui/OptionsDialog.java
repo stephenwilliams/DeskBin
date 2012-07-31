@@ -1,6 +1,6 @@
-package com.alta189.hasteclient.gui;
+package com.alta189.deskbin.gui;
 
-import com.alta189.hasteclient.util.UIUtil;
+import com.alta189.deskbin.util.UIUtil;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
