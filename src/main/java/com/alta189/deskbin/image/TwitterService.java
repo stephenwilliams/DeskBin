@@ -54,7 +54,7 @@ public class TwitterService implements ImageService {
 
 	@Override
 	public String getName() {
-		return null;
+		return NAME;
 	}
 
 	@Override
@@ -71,8 +71,7 @@ public class TwitterService implements ImageService {
 	}
 
 	@Override
-	public String upload(List<BufferedImage> image)
-			throws ImageServiceException {
+	public String upload(List<BufferedImage> image)	throws ImageServiceException {
 		// TODO Auto-generated method stub
 		return null;
 	}
