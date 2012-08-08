@@ -1,6 +1,7 @@
 package com.alta189.deskbin.service.url;
 
 import com.alta189.deskbin.service.ServiceSnapshot;
+import com.alta189.deskbin.util.KeyStore;
 import com.rosaloves.bitlyj.Bitly;
 
 public class BitLyService extends ShorteningService {
@@ -8,7 +9,8 @@ public class BitLyService extends ShorteningService {
 	private final Bitly.Provider bitly;
 	private final String user;
 
-	public BitLyService(String user, String apiKey) {
+	public BitLyService(String user) {
+		String apiKey = KeyStore.get("bitly-" + user);
 		bitly = Bitly.as(user, apiKey);
 		this.user = user;
 	}

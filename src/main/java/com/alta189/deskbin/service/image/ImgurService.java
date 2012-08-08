@@ -26,13 +26,12 @@ public class ImgurService extends ImageService {
 	private final HttpClient client = new DefaultHttpClient();
 	private final String apikey;
 
-	public ImgurService(String apikey) {
-		this.apikey = apikey;
+	public ImgurService() {
+		this.apikey = KeyUtils.getKey("imgur-apikey");
 	}
 
 	public ImgurService(ServiceSnapshot snapshot) {
-		super(snapshot);
-		this.apikey = KeyUtils.getKey("imgur-apikey");
+		this();
 	}
 
 	@Override

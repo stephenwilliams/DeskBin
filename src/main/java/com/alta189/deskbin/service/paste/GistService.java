@@ -1,6 +1,7 @@
 package com.alta189.deskbin.service.paste;
 
 import com.alta189.deskbin.service.ServiceSnapshot;
+import com.alta189.deskbin.util.KeyStore;
 import org.eclipse.egit.github.core.Gist;
 import org.eclipse.egit.github.core.GistFile;
 import org.eclipse.egit.github.core.client.GitHubClient;
@@ -13,8 +14,13 @@ public class GistService extends AbstractPasteService {
 	private static final String NAME = "gist";
 	private final GitHubClient client;
 
-	public GistService(String oauthTokeb) {
-		client = new GitHubClient(oauthTokeb);
+	public GistService() {
+		String oAuthToken = KeyStore.get("github-oauth-token");
+		client = new GitHubClient(oAuthToken);
+	}
+
+	public GistService(ServiceSnapshot snapshot) {
+		this();
 	}
 
 	@Override

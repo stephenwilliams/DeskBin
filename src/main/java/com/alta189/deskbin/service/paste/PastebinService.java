@@ -1,6 +1,7 @@
 package com.alta189.deskbin.service.paste;
 
 import com.alta189.deskbin.service.ServiceSnapshot;
+import com.alta189.deskbin.util.KeyUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
@@ -20,8 +21,12 @@ public class PastebinService extends AbstractPasteService {
 	private final HttpClient client = new DefaultHttpClient();
 	private final String apiKey;
 
-	public PastebinService(String apiKey) {
-		this.apiKey = apiKey;
+	public PastebinService() {
+		this.apiKey = KeyUtils.getKey("pastebin-apikey");
+	}
+
+	public PastebinService(ServiceSnapshot snapshot) {
+		this();
 	}
 
 	@Override

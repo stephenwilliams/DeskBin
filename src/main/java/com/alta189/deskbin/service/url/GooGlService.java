@@ -1,6 +1,7 @@
 package com.alta189.deskbin.service.url;
 
 import com.alta189.deskbin.service.ServiceSnapshot;
+import com.alta189.deskbin.util.KeyUtils;
 import net.petersson.googl.GooGl;
 import net.petersson.googl.GooGlException;
 
@@ -11,8 +12,13 @@ public class GooGlService extends ShorteningService {
 	private static final String NAME = "goo.gl";
 	private final GooGl googl;
 
-	public GooGlService(String apikey) {
-		googl = new GooGl(apikey);
+	public GooGlService() {
+		String apiKey = KeyUtils.getKey("googl-apikey");
+		googl = new GooGl(apiKey);
+	}
+
+	public GooGlService(ServiceSnapshot snapshot) {
+		this();
 	}
 
 	@Override

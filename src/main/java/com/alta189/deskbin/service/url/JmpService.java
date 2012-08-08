@@ -1,6 +1,8 @@
 package com.alta189.deskbin.service.url;
 
 import com.alta189.deskbin.service.ServiceSnapshot;
+import com.alta189.deskbin.util.CastUtil;
+import com.alta189.deskbin.util.KeyStore;
 import com.rosaloves.bitlyj.Bitly;
 import com.rosaloves.bitlyj.Jmp;
 
@@ -9,14 +11,14 @@ public class JmpService extends ShorteningService {
 	private Bitly.Provider jmp;
 	private final String user;
 
-	public JmpService(ServiceSnapshot snapshot) {
-		this.user = snapshot.get("user");
-
-	}
-
-	public JmpService(String user, String apiKey) {
+	public JmpService(String user) {
+		String apiKey = KeyStore.get("jmp-" + user);
 		jmp = Jmp.as(user, apiKey);
 		this.user = user;
+	}
+
+	public JmpService(ServiceSnapshot snapshot) {
+		 this(CastUtil.safeCast(snapshot.get("user"), String.class));
 	}
 
 	@Override

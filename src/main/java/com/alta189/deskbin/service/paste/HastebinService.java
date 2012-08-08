@@ -18,6 +18,12 @@ public class HastebinService extends AbstractPasteService {
 	private static final String NAME = "hastebin";
 	private static final String URL = "http://hastebin.com/documents";
 
+	public HastebinService() {
+	}
+
+	public HastebinService(ServiceSnapshot snapshot) {
+	}
+
 	@Override
 	public String getName() {
 		return NAME;

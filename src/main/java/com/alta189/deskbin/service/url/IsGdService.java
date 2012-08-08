@@ -18,6 +18,12 @@ public class IsGdService extends ShorteningService {
 	private static final String EXPAND_URL = "http://is.gd/forward.php?format=simple&shorturl=";
 	private final HttpClient httpClient = new DefaultHttpClient();
 
+	public IsGdService() {
+	}
+
+	public IsGdService(ServiceSnapshot snapshot) {
+	}
+
 	@Override
 	public String getName() {
 		return NAME;
