@@ -1,5 +1,6 @@
-package com.alta189.deskbin.paste;
+package com.alta189.deskbin.service.paste;
 
+import com.alta189.deskbin.service.ServiceSnapshot;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
@@ -20,6 +21,11 @@ public class HastebinService extends AbstractPasteService {
 	@Override
 	public String getName() {
 		return NAME;
+	}
+
+	@Override
+	public ServiceSnapshot generateSnapshot() {
+		return new ServiceSnapshot(getClass());
 	}
 
 	@Override

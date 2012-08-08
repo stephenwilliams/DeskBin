@@ -1,5 +1,6 @@
-package com.alta189.deskbin.paste;
+package com.alta189.deskbin.service.paste;
 
+import com.alta189.deskbin.service.ServiceSnapshot;
 import org.eclipse.egit.github.core.Gist;
 import org.eclipse.egit.github.core.GistFile;
 import org.eclipse.egit.github.core.client.GitHubClient;
@@ -19,6 +20,11 @@ public class GistService extends AbstractPasteService {
 	@Override
 	public String getName() {
 		return NAME;
+	}
+
+	@Override
+	public ServiceSnapshot generateSnapshot() {
+		return new ServiceSnapshot(getClass());
 	}
 
 	@Override

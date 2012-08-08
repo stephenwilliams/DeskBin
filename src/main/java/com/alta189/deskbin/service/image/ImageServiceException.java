@@ -1,4 +1,4 @@
-package com.alta189.deskbin.image;
+package com.alta189.deskbin.service.image;
 
 public class ImageServiceException extends Exception {
 	public ImageServiceException(String message) {

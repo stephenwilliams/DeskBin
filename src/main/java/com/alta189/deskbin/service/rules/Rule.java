@@ -1,4 +1,4 @@
-package com.alta189.deskbin.rules;
+package com.alta189.deskbin.service.rules;
 
 import java.util.List;
 

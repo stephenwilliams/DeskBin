@@ -1,6 +1,7 @@
-package com.alta189.deskbin.image;
+package com.alta189.deskbin.service.image;
 
-import com.alta189.deskbin.util.ScreenshotUtil;
+import com.alta189.deskbin.service.ServiceSnapshot;
+import com.alta189.deskbin.util.KeyUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
@@ -19,7 +20,7 @@ import java.nio.charset.Charset;
 import java.util.Collection;
 import java.util.List;
 
-public class ImgurService implements ImageService {
+public class ImgurService extends ImageService {
 	private static final String NAME = "imgur";
 	private static final String UPLOAD_URL = "http://api.imgur.com/2/upload.json";
 	private final HttpClient client = new DefaultHttpClient();
@@ -29,9 +30,19 @@ public class ImgurService implements ImageService {
 		this.apikey = apikey;
 	}
 
+	public ImgurService(ServiceSnapshot snapshot) {
+		super(snapshot);
+		this.apikey = KeyUtils.getKey("imgur-apikey");
+	}
+
 	@Override
 	public String getName() {
 		return NAME;
+	}
+
+	@Override
+	public ServiceSnapshot generateSnapshot() {
+		return new ServiceSnapshot(getClass());
 	}
 
 	@Override

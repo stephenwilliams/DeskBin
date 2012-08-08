@@ -1,5 +1,6 @@
-package com.alta189.deskbin.url;
+package com.alta189.deskbin.service.url;
 
+import com.alta189.deskbin.service.ServiceSnapshot;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
@@ -11,7 +12,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
-public class IsGdService implements ShorteningService {
+public class IsGdService extends ShorteningService {
 	private static final String NAME = "is.gd";
 	private static final String SHORTEN_URL = "http://is.gd/create.php?logstats=1&format=simple&url=";
 	private static final String EXPAND_URL = "http://is.gd/forward.php?format=simple&shorturl=";
@@ -20,6 +21,11 @@ public class IsGdService implements ShorteningService {
 	@Override
 	public String getName() {
 		return NAME;
+	}
+
+	@Override
+	public ServiceSnapshot generateSnapshot() {
+		return new ServiceSnapshot(getClass());
 	}
 
 	@Override

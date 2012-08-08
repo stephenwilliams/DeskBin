@@ -1,12 +1,13 @@
-package com.alta189.deskbin.url;
+package com.alta189.deskbin.service.url;
 
+import com.alta189.deskbin.service.ServiceSnapshot;
 import net.petersson.googl.GooGl;
 import net.petersson.googl.GooGlException;
 
 import java.io.IOException;
 import java.net.URL;
 
-public class GooGlService implements ShorteningService {
+public class GooGlService extends ShorteningService {
 	private static final String NAME = "goo.gl";
 	private final GooGl googl;
 
@@ -17,6 +18,11 @@ public class GooGlService implements ShorteningService {
 	@Override
 	public String getName() {
 		return NAME;
+	}
+
+	@Override
+	public ServiceSnapshot generateSnapshot() {
+		return new ServiceSnapshot(getClass());
 	}
 
 	@Override

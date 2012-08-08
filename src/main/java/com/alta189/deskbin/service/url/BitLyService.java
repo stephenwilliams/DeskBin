@@ -1,18 +1,26 @@
-package com.alta189.deskbin.url;
+package com.alta189.deskbin.service.url;
 
+import com.alta189.deskbin.service.ServiceSnapshot;
 import com.rosaloves.bitlyj.Bitly;
 
-public class BitLyService implements ShorteningService {
+public class BitLyService extends ShorteningService {
 	private static final String NAME = "bit.ly";
 	private final Bitly.Provider bitly;
+	private final String user;
 
 	public BitLyService(String user, String apiKey) {
 		bitly = Bitly.as(user, apiKey);
+		this.user = user;
 	}
 
 	@Override
 	public String getName() {
 		return NAME;
+	}
+
+	@Override
+	public ServiceSnapshot generateSnapshot() {
+		return new ServiceSnapshot(getClass()).add("user", user);
 	}
 
 	@Override

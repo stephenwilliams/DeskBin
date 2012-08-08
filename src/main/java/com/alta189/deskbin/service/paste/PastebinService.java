@@ -1,5 +1,6 @@
-package com.alta189.deskbin.paste;
+package com.alta189.deskbin.service.paste;
 
+import com.alta189.deskbin.service.ServiceSnapshot;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
@@ -26,6 +27,11 @@ public class PastebinService extends AbstractPasteService {
 	@Override
 	public String getName() {
 		return NAME;
+	}
+
+	@Override
+	public ServiceSnapshot generateSnapshot() {
+		return new ServiceSnapshot(getClass());
 	}
 
 	@Override
