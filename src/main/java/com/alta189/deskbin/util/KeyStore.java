@@ -37,9 +37,6 @@ public class KeyStore {
 		if (key == null || key.isEmpty()) {
 			throw new IllegalAccessError();
 		}
-		if (o == null) {
-			o = new NullObject();
-		}
 		instance.storeImpl(key, o);
 	}
 
@@ -71,6 +68,9 @@ public class KeyStore {
 	}
 
 	private void storeImpl(String key, Object o) {
+		if (o == null) {
+			o = new NullObject();
+		}
 		String data = toString(CastUtil.safeCast(o, Serializable.class));
 		String encryptedData = CryptUtils.encrypt(data);
 		map.put(key, encryptedData);
@@ -82,7 +82,11 @@ public class KeyStore {
 			return null;
 		}
 		String decryptedData = CryptUtils.decrypt(data);
-		return CastUtil.safeCast(fromString(decryptedData));
+		Object o = fromString(decryptedData);
+		if (o instanceof NullObject) {
+			return null;
+		}
+		return CastUtil.safeCast(o);
 	}
 
 	private ConcurrentHashMap<String, String> loadImpl() {
