@@ -21,8 +21,8 @@ public class OptionsDialog extends JDialog {
 	private JTabbedPane tabs;
 	private List<OptionsPanel> optionsPanels = new ArrayList<OptionsPanel>();
 
-	public OptionsDialog() {
-		setTitle("Launcher Options");
+	public OptionsDialog(String title) {
+		setTitle(title);
 		setResizable(false);
 		buildUserInterface();
 		pack();
