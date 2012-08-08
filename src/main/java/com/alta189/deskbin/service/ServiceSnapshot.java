@@ -9,10 +9,11 @@ import java.util.Map;
 public class ServiceSnapshot implements Serializable {
 	private static final long serialVersionUID = 8133867551731195949L;
 	private final Map<String, Object> map = new HashMap<String, Object>();
-	private final Class<? extends Service> serviceClass;
+	private final String serviceClass;
+	private transient Class<? extends Service> clazz;
 
 	public ServiceSnapshot(Class<? extends Service> serviceClass) {
-		this.serviceClass = serviceClass;
+		this.serviceClass = serviceClass.getName();
 	}
 
 	public Map<String, Object> getMap() {
@@ -33,6 +34,14 @@ public class ServiceSnapshot implements Serializable {
 	}
 
 	public Class<? extends Service> getServiceClass() {
-		return serviceClass;
+		if (clazz == null) {
+			try {
+				Class c = Class.forName(serviceClass);
+				clazz = CastUtil.safeCast(c);
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+		}
+		return clazz;
 	}
 }
