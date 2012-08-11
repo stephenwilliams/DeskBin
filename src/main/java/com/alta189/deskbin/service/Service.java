@@ -1,6 +1,9 @@
 package com.alta189.deskbin.service;
 
-public abstract class Service {
+import com.alta189.deskbin.SnapshotGenerator;
+import com.alta189.deskbin.Snapshotable;
+
+public abstract class Service implements Snapshotable, SnapshotGenerator<ServiceSnapshot> {
 
 	public Service() {
 	}
@@ -10,5 +13,4 @@ public abstract class Service {
 
 	public abstract String getName();
 
-	public abstract ServiceSnapshot generateSnapshot();
 }
