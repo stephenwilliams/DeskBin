@@ -64,7 +64,7 @@ public class YAMLProcessor extends YAMLNode {
         super(new LinkedHashMap<String, Object>(), writeDefaults);
         this.format = format;
 
-        DumperOptions options = new FancyDumperOptions();
+        DumperOptions options = new DumperOptions();
         options.setIndent(4);
         options.setDefaultFlowStyle(format.getStyle());
         Representer representer = new FancyRepresenter();
@@ -285,21 +285,7 @@ public class YAMLProcessor extends YAMLNode {
      */
     public static YAMLNode getEmptyNode(boolean writeDefaults) {
         return new YAMLNode(new LinkedHashMap<String, Object>(), writeDefaults);
-    }
-
-    // This will be included in snakeyaml 1.10, but until then we have to do it manually.
-    private class FancyDumperOptions extends DumperOptions {
-        @Override
-        public ScalarStyle calculateScalarStyle(ScalarAnalysis analysis,
-                                                              ScalarStyle style) {
-            if (format == YAMLFormat.EXTENDED
-                    && (analysis.scalar.contains("\n") || analysis.scalar.contains("\r"))) {
-                return ScalarStyle.LITERAL;
-            } else {
-                return super.calculateScalarStyle(analysis, style);
-            }
-        }
-    }
+	}
 
     private static class FancyRepresenter extends Representer {
         public FancyRepresenter() {
