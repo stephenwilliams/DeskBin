@@ -7,7 +7,7 @@ import com.alta189.deskbin.util.CastUtil;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
-public class SnapshotInjector<T extends Snapshotable, E extends Snapshot<? extends T>> {
+public class SnapshotInjector<T extends Snapshotable, E extends Snapshot<E, ? extends T>> {
 	private final E snapshot;
 
 	public SnapshotInjector(E snapshot) {
