@@ -1,5 +1,6 @@
 package com.alta189.deskbin.util;
 
+import org.apache.commons.codec.binary.Base64;
 import sun.misc.BASE64Decoder;
 
 import javax.crypto.Cipher;
@@ -50,7 +51,7 @@ public class DesEncrypter {
 			byte[] enc = ecipher.doFinal(utf8);
 
 			// Encode bytes to base64 to get a string
-			return new sun.misc.BASE64Encoder().encode(enc);
+			return Base64.encodeBase64String(enc);
 		} catch (javax.crypto.BadPaddingException e) {
 			e.printStackTrace();
 		} catch (IllegalBlockSizeException e) {
@@ -58,6 +59,7 @@ public class DesEncrypter {
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
+			e.printStackTrace();
 		}
 		return null;
 	}
@@ -65,7 +67,7 @@ public class DesEncrypter {
 	public String decrypt(String str) {
 		try {
 			// Decode base64 to get bytes
-			byte[] dec = new BASE64Decoder().decodeBuffer(str);
+			byte[] dec = Base64.decodeBase64(str);
 
 			// Decrypt
 			byte[] utf8 = dcipher.doFinal(dec);
