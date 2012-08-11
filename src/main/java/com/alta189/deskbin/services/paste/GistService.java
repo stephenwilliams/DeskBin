@@ -1,6 +1,6 @@
-package com.alta189.deskbin.service.paste;
+package com.alta189.deskbin.services.paste;
 
-import com.alta189.deskbin.service.ServiceSnapshot;
+import com.alta189.deskbin.services.ServiceSnapshot;
 import com.alta189.deskbin.util.KeyStore;
 import org.eclipse.egit.github.core.Gist;
 import org.eclipse.egit.github.core.GistFile;

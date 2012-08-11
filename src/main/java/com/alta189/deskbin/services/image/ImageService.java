@@ -1,7 +1,7 @@
-package com.alta189.deskbin.service.image;
+package com.alta189.deskbin.services.image;
 
-import com.alta189.deskbin.service.Service;
-import com.alta189.deskbin.service.ServiceSnapshot;
+import com.alta189.deskbin.services.Service;
+import com.alta189.deskbin.services.ServiceSnapshot;
 
 import java.awt.image.BufferedImage;
 import java.io.File;

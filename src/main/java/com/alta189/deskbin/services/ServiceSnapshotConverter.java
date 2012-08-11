@@ -1,4 +1,4 @@
-package com.alta189.deskbin.service;
+package com.alta189.deskbin.services;
 
 import com.alta189.deskbin.SnapshotConverter;
 import com.alta189.deskbin.util.injectors.SnapshotInjector;

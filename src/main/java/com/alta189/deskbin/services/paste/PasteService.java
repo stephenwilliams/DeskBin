@@ -1,6 +1,6 @@
-package com.alta189.deskbin.service.paste;
+package com.alta189.deskbin.services.paste;
 
-import com.alta189.deskbin.service.Service;
+import com.alta189.deskbin.services.Service;
 
 public abstract class PasteService extends Service {
 

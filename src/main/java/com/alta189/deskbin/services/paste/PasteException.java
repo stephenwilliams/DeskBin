@@ -1,4 +1,4 @@
-package com.alta189.deskbin.service.paste;
+package com.alta189.deskbin.services.paste;
 
 public class PasteException extends Exception {
 	public PasteException(String message) {

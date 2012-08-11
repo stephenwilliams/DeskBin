@@ -1,6 +1,6 @@
-package com.alta189.deskbin.service.url;
+package com.alta189.deskbin.services.url;
 
-import com.alta189.deskbin.service.ServiceSnapshot;
+import com.alta189.deskbin.services.ServiceSnapshot;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;

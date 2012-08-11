@@ -1,6 +1,6 @@
-package com.alta189.deskbin.service.url;
+package com.alta189.deskbin.services.url;
 
-import com.alta189.deskbin.service.ServiceSnapshot;
+import com.alta189.deskbin.services.ServiceSnapshot;
 import com.alta189.deskbin.util.KeyUtils;
 import net.petersson.googl.GooGl;
 import net.petersson.googl.GooGlException;
