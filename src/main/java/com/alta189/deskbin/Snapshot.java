@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class Snapshot<E> implements Serializable {
+public abstract class Snapshot<S, E> implements Serializable {
 	private static final long serialVersionUID = 81632039381923753L;
 	private final Map<String, Object> map = new HashMap<String, Object>();
 	private final String className;
@@ -21,14 +21,14 @@ public abstract class Snapshot<E> implements Serializable {
 		return map;
 	}
 
-	public Snapshot add(String key, Object value) {
+	public S add(String key, Object value) {
 		map.put(key, value);
-		return this;
+		return self();
 	}
 
-	public Snapshot remove(String key) {
+	public S remove(String key) {
 		map.remove(key);
-		return this;
+		return self();
 	}
 
 	public <T> T get(String key) {
@@ -53,5 +53,9 @@ public abstract class Snapshot<E> implements Serializable {
 			}
 		}
 		return clazz;
+	}
+
+	private final S self() {
+		return CastUtil.safeCast(this);
 	}
 }
