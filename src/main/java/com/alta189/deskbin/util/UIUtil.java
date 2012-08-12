@@ -35,10 +35,8 @@ public class UIUtil {
 		try {
 			Desktop.getDesktop().browse(new URL("file://" + file.getAbsolutePath()).toURI());
 		} catch (IOException e) {
-			JOptionPane.showMessageDialog(component, "Unable to open '" +
-					file.getAbsolutePath() + "'. Maybe it doesn't exist?",
-					"Open failed", JOptionPane.ERROR_MESSAGE);
-		} catch (URISyntaxException e) {
+			JOptionPane.showMessageDialog(component, "Unable to open '" + file.getAbsolutePath() + "'. Maybe it doesn't exist?", "Open failed", JOptionPane.ERROR_MESSAGE);
+		} catch (URISyntaxException ignore) {
 		}
 	}
 
@@ -51,7 +49,7 @@ public class UIUtil {
 	public static void openURL(String url, Component component) {
 		try {
 			openURL(new URL(url), component);
-		} catch (MalformedURLException e) {
+		} catch (MalformedURLException ignore) {
 		}
 	}
 
@@ -65,10 +63,8 @@ public class UIUtil {
 		try {
 			Desktop.getDesktop().browse(url.toURI());
 		} catch (IOException e) {
-			JOptionPane.showMessageDialog(component, "Unable to open '" +
-					url + "'",
-					"Open failed", JOptionPane.ERROR_MESSAGE);
-		} catch (URISyntaxException e) {
+			JOptionPane.showMessageDialog(component, "Unable to open '" + url + "'", "Open failed", JOptionPane.ERROR_MESSAGE);
+		} catch (URISyntaxException ignore) {
 		}
 	}
 
@@ -81,7 +77,6 @@ public class UIUtil {
 	 */
 	public static void showError(Component component, String title, String message) {
 		JOptionPane.showMessageDialog(component, message, title, JOptionPane.ERROR_MESSAGE);
-		;
 	}
 
 	/**
