@@ -1,11 +1,11 @@
 package com.alta189.deskbin.util.injectors;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+
 import com.alta189.deskbin.Snapshot;
 import com.alta189.deskbin.Snapshotable;
 import com.alta189.deskbin.util.CastUtil;
-
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 
 public class SnapshotInjector<T extends Snapshotable, E extends Snapshot<E, ? extends T>> {
 	private final E snapshot;

@@ -1,6 +1,8 @@
 package com.alta189.deskbin.services.paste;
 
-import com.alta189.deskbin.services.ServiceSnapshot;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
@@ -11,8 +13,7 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
+import com.alta189.deskbin.services.ServiceSnapshot;
 
 public class HastebinService extends AbstractPasteService {
 	private static final String NAME = "hastebin";

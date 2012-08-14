@@ -1,8 +1,5 @@
 package com.alta189.deskbin.util;
 
-import javax.swing.JComponent;
-import javax.swing.JOptionPane;
-import javax.swing.UIManager;
 import java.awt.Component;
 import java.awt.Desktop;
 import java.awt.Dimension;
@@ -12,6 +9,10 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
+
+import javax.swing.JComponent;
+import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 /**
  * UI utility methods.

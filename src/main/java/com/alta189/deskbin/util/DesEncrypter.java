@@ -1,17 +1,17 @@
 package com.alta189.deskbin.util;
 
-import org.apache.commons.codec.binary.Base64;
-import sun.misc.BASE64Decoder;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.KeyGenerator;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
+
+import org.apache.commons.codec.binary.Base64;
 
 public class DesEncrypter {
 	Cipher ecipher;

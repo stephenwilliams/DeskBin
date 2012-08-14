@@ -1,13 +1,14 @@
 package com.alta189.deskbin.util;
 
-import org.apache.commons.io.IOUtils;
-
-import javax.crypto.SecretKey;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+
+import javax.crypto.SecretKey;
+
+import org.apache.commons.io.IOUtils;
 
 public class CryptUtils {
 	private static SecretKey key;

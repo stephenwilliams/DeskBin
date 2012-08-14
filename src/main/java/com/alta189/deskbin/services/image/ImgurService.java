@@ -1,7 +1,14 @@
 package com.alta189.deskbin.services.image;
 
-import com.alta189.deskbin.services.ServiceSnapshot;
-import com.alta189.deskbin.util.KeyUtils;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.util.Collection;
+import java.util.List;
+
+import javax.imageio.ImageIO;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
@@ -12,13 +19,8 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.util.Collection;
-import java.util.List;
+import com.alta189.deskbin.services.ServiceSnapshot;
+import com.alta189.deskbin.util.KeyUtils;
 
 public class ImgurService extends ImageService {
 	private static final String NAME = "imgur";

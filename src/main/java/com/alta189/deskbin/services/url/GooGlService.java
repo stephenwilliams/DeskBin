@@ -1,12 +1,13 @@
 package com.alta189.deskbin.services.url;
 
-import com.alta189.deskbin.services.ServiceSnapshot;
-import com.alta189.deskbin.util.KeyUtils;
+import java.io.IOException;
+import java.net.URL;
+
 import net.petersson.googl.GooGl;
 import net.petersson.googl.GooGlException;
 
-import java.io.IOException;
-import java.net.URL;
+import com.alta189.deskbin.services.ServiceSnapshot;
+import com.alta189.deskbin.util.KeyUtils;
 
 public class GooGlService extends ShorteningService {
 	private static final String NAME = "goo.gl";
