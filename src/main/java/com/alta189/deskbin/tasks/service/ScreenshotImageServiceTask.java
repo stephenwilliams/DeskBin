@@ -1,6 +1,14 @@
 package com.alta189.deskbin.tasks.service;
 
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
+import java.awt.datatransfer.Transferable;
+import java.awt.image.BufferedImage;
+import java.util.List;
+
 import ch.swingfx.twinkle.NotificationBuilder;
+
 import com.alta189.deskbin.services.image.ImageService;
 import com.alta189.deskbin.services.image.ImageServiceException;
 import com.alta189.deskbin.tasks.ServiceTask;
@@ -8,13 +16,6 @@ import com.alta189.deskbin.tasks.TaskSnapshot;
 import com.alta189.deskbin.util.Keyboard;
 import com.alta189.deskbin.util.OptionsMap;
 import com.alta189.deskbin.util.ScreenshotUtil;
-
-import java.awt.Toolkit;
-import java.awt.datatransfer.Clipboard;
-import java.awt.datatransfer.StringSelection;
-import java.awt.datatransfer.Transferable;
-import java.awt.image.BufferedImage;
-import java.util.List;
 
 public class ScreenshotImageServiceTask extends ServiceTask<ImageService> {
 	private final OptionsMap options;

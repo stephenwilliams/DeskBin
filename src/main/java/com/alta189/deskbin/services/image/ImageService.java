@@ -1,12 +1,12 @@
 package com.alta189.deskbin.services.image;
 
-import com.alta189.deskbin.services.Service;
-import com.alta189.deskbin.services.ServiceSnapshot;
-
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.Collection;
 import java.util.List;
+
+import com.alta189.deskbin.services.Service;
+import com.alta189.deskbin.services.ServiceSnapshot;
 
 public abstract class ImageService extends Service {
 

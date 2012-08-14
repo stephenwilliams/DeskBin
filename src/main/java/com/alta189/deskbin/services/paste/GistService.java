@@ -1,14 +1,15 @@
 package com.alta189.deskbin.services.paste;
 
-import com.alta189.deskbin.services.ServiceSnapshot;
-import com.alta189.deskbin.util.KeyStore;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.eclipse.egit.github.core.Gist;
 import org.eclipse.egit.github.core.GistFile;
 import org.eclipse.egit.github.core.client.GitHubClient;
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import com.alta189.deskbin.services.ServiceSnapshot;
+import com.alta189.deskbin.util.KeyStore;
 
 public class GistService extends AbstractPasteService {
 	private static final String NAME = "gist";

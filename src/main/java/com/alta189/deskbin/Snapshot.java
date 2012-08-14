@@ -1,10 +1,10 @@
 package com.alta189.deskbin;
 
-import com.alta189.deskbin.util.CastUtil;
-
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
+
+import com.alta189.deskbin.util.CastUtil;
 
 public abstract class Snapshot<S, E> implements Serializable {
 	private static final long serialVersionUID = 81632039381923753L;
