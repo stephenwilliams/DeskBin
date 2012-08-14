@@ -1,5 +1,8 @@
 package com.alta189.deskbin.rules;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.alta189.deskbin.SnapshotGenerator;
 import com.alta189.deskbin.Snapshotable;
 import com.alta189.deskbin.conditions.Condition;
@@ -9,9 +12,6 @@ import com.alta189.deskbin.tasks.Task;
 import com.alta189.deskbin.tasks.TaskRunnable;
 import com.alta189.deskbin.tasks.TaskSnapshot;
 import com.alta189.deskbin.tasks.TaskSnapshotConverter;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Rule implements Snapshotable, SnapshotGenerator<RuleSnapshot> {
 	/**

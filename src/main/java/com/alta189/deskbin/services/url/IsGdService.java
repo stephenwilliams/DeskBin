@@ -1,6 +1,9 @@
 package com.alta189.deskbin.services.url;
 
-import com.alta189.deskbin.services.ServiceSnapshot;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
@@ -8,9 +11,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
+import com.alta189.deskbin.services.ServiceSnapshot;
 
 public class IsGdService extends ShorteningService {
 	private static final String NAME = "is.gd";

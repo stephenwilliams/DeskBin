@@ -9,21 +9,18 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 
-import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.IOUtils;
 
-import com.alta189.deskbin.auth.AuthenticationException;
-import com.alta189.deskbin.services.ServiceSnapshot;
-import com.alta189.deskbin.util.KeyStore;
-import com.alta189.deskbin.util.KeyUtils;
-
 import twitter4j.Twitter;
-import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
 import twitter4j.auth.AccessToken;
 import twitter4j.media.ImageUpload;
 import twitter4j.media.ImageUploadFactory;
 import twitter4j.media.MediaProvider;
+
+import com.alta189.deskbin.services.ServiceSnapshot;
+import com.alta189.deskbin.util.KeyStore;
+import com.alta189.deskbin.util.KeyUtils;
 
 public class TwitterService extends ImageService {
 
