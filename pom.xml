@@ -6,7 +6,7 @@
 	<groupId>com.alta189</groupId>
 	<artifactId>deskbin</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
-
+	<url>http://github.com/alta189/DeskBin</url>
 	<properties>
 		<buildNumber>0</buildNumber>
 	</properties>
@@ -118,6 +118,44 @@
 		<finalName>${project.artifactId}</finalName>
 
 		<plugins>
+			<!-- License headers check plugin -->
+			<plugin>
+				<groupId>com.mycila.maven-license-plugin</groupId>
+				<artifactId>maven-license-plugin</artifactId>
+				<version>1.10.b1</version>
+				<executions>
+					<execution>
+						<phase>clean</phase>
+						<goals>
+							<goal>format</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<quiet>true</quiet>
+					<encoding>UTF-8</encoding>
+					<strictCheck>true</strictCheck>
+					<header>${basedir}/HEADER.txt</header>
+					<keywords>
+						<keyword>${project.name}</keyword>
+						<keyword>license</keyword>
+					</keywords>
+					<mapping>
+						<java>SLASHSTAR_STYLE</java>
+					</mapping>
+					<properties>
+						<name>${project.name}</name>
+						<url>${project.url}</url>
+						<license>GNU Lesser General Public License</license>
+						<licenseUrl>http://www.gnu.org/licenses/lgpl.html</licenseUrl>
+						<copyright>Copyright (c) ${project.inceptionYear}-2012, alta189</copyright>
+					</properties>
+					<includes>
+						<include>src/main/java/**</include>
+						<include>src/test/java/**</include>
+					</includes>
+				</configuration>
+			</plugin>
 			<!-- Compiler plugin -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
