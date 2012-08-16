@@ -31,7 +31,7 @@ public class OptionsMap implements Serializable {
 		return map;
 	}
 
-	public OptionsMap add(String key, Object value) {
+	public OptionsMap put(String key, Object value) {
 		map.put(key, value);
 		return this;
 	}

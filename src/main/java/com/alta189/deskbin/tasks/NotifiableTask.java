@@ -33,7 +33,7 @@ public abstract class NotifiableTask extends OptionsTask {
 	}
 
 	public void setNotify(boolean notify) {
-		getOptions().add("notify", notify);
+		getOptions().put("notify", notify);
 	}
 
 	public int getNotificationDisplayTime() {
@@ -41,6 +41,6 @@ public abstract class NotifiableTask extends OptionsTask {
 	}
 
 	public void setNotificationDisplayTime(int displayTime) {
-		getOptions().add("notification-display-time", displayTime);
+		getOptions().put("notification-display-time", displayTime);
 	}
 }
