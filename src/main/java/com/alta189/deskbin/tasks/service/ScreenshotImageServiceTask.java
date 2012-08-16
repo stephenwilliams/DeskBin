@@ -11,6 +11,7 @@ import ch.swingfx.twinkle.NotificationBuilder;
 
 import com.alta189.deskbin.services.image.ImageService;
 import com.alta189.deskbin.services.image.ImageServiceException;
+import com.alta189.deskbin.tasks.Action;
 import com.alta189.deskbin.tasks.ServiceTask;
 import com.alta189.deskbin.tasks.TaskSnapshot;
 import com.alta189.deskbin.util.Keyboard;
@@ -19,6 +20,10 @@ import com.alta189.deskbin.util.ScreenshotUtil;
 
 public class ScreenshotImageServiceTask extends ServiceTask<ImageService> {
 	private final OptionsMap options;
+
+	public ScreenshotImageServiceTask(ImageService service) {
+		this(service, new OptionsMap());
+	}
 
 	public ScreenshotImageServiceTask(ImageService service, OptionsMap options) {
 		super("ScreenshotImage", service);
@@ -39,7 +44,7 @@ public class ScreenshotImageServiceTask extends ServiceTask<ImageService> {
 
 	@Override
 	public void run() {
-		ScreenshotType screenshotType = ScreenshotType.valueOf(options.get(String.class, "screenshot-type"));
+		ScreenshotType screenshotType = ScreenshotType.getValue(options.get(String.class, "screenshot-type"));
 		String url = null;
 		switch (screenshotType) {
 			case MAIN_MONITOR:
@@ -56,7 +61,7 @@ public class ScreenshotImageServiceTask extends ServiceTask<ImageService> {
 				break;
 		}
 		if (url != null) {
-			Action action = Action.valueOf(options.get(String.class, "action"));
+			Action action = Action.getValue(options.get(String.class, "action"));
 			switch (action) {
 				case WRITE:
 					Keyboard.getInstance().type(url);
@@ -117,23 +122,6 @@ public class ScreenshotImageServiceTask extends ServiceTask<ImageService> {
 			}
 			if (value == null) {
 				value = CURRENT_MONITOR;
-			}
-			return value;
-		}
-	}
-
-	public enum Action {
-		WRITE,
-		CLIPBOARD;
-
-		public static Action getValue(String str) {
-			Action value = null;
-			try {
-				value = valueOf(str);
-			} catch (Exception ignored) {
-			}
-			if (value == null) {
-				value = WRITE;
 			}
 			return value;
 		}
