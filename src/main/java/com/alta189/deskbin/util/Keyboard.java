@@ -149,7 +149,7 @@ public class Keyboard {
 			case ';': doType(KeyEvent.VK_SEMICOLON); break;
 			case ':': doType(KeyEvent.VK_COLON); break;
 			case '\'': doType(KeyEvent.VK_QUOTE); break;
-			case '"': doType(KeyEvent.VK_QUOTEDBL); break;
+			case '"': doType(KeyEvent.SHIFT_MASK, KeyEvent.VK_QUOTE); break;
 			case ',': doType(KeyEvent.VK_COMMA); break;
 			case '<': doType(KeyEvent.VK_LESS); break;
 			case '.': doType(KeyEvent.VK_PERIOD); break;
@@ -163,9 +163,6 @@ public class Keyboard {
 	}
 
 	private void doType(int... keyCodes) {
-		if (keyCodes[0] == KeyEvent.VK_QUOTEDBL) {
-			System.out.println("FCU");
-		}
 		doType(keyCodes, 0, keyCodes.length);
 	}
 
