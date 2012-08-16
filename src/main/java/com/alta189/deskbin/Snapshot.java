@@ -50,6 +50,18 @@ public abstract class Snapshot<S, E> implements Serializable {
 		return self();
 	}
 
+	public <T> T get(Class<? extends T> clazz, String key) {
+		return CastUtil.safeCast(map.get(key), clazz);
+	}
+
+	public <T> T get(Class<? extends T> clazz, String key, T defaultValue) {
+		Object o = map.get(key);
+		if (o != null) {
+			return CastUtil.safeCast(map.get(key), clazz);
+		}
+		return defaultValue;
+	}
+
 	public <T> T get(String key) {
 		return CastUtil.safeCast(map.get(key));
 	}

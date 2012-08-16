@@ -25,8 +25,12 @@ import com.alta189.deskbin.Snapshotable;
 public abstract class Task implements Snapshotable, SnapshotGenerator<TaskSnapshot>{
 	private final String taskName;
 
-	protected Task(String taskName) {
-		this.taskName = taskName;
+	protected Task() {
+		taskName = getClass().getSimpleName();
+	}
+
+	public Task(TaskSnapshot snapshot) {
+		this.taskName = snapshot.get("name");
 	}
 
 	public void preRun() {
@@ -43,4 +47,9 @@ public abstract class Task implements Snapshotable, SnapshotGenerator<TaskSnapsh
 		return taskName;
 	}
 
+	@Override
+	public TaskSnapshot generateSnapshot() {
+		return new TaskSnapshot(getClass())
+				.add("name", taskName);
+	}
 }

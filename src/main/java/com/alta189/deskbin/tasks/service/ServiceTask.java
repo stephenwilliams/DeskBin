@@ -20,20 +20,23 @@
 package com.alta189.deskbin.tasks.service;
 
 import com.alta189.deskbin.services.Service;
-import com.alta189.deskbin.tasks.Task;
+import com.alta189.deskbin.services.ServiceSnapshot;
+import com.alta189.deskbin.services.ServiceSnapshotConverter;
+import com.alta189.deskbin.tasks.NotifiableTask;
 import com.alta189.deskbin.tasks.TaskSnapshot;
+import com.alta189.deskbin.util.CastUtil;
 
-public abstract class ServiceTask<T extends Service> extends Task {
+public abstract class ServiceTask<T extends Service> extends NotifiableTask {
 	private final T service;
 
-	public ServiceTask(String name, T service) {
-		super(name + "ServiceTask");
+	public ServiceTask(T service) {
+		super();
 		this.service = service;
 	}
 
 	public ServiceTask(TaskSnapshot snapshot) {
-		super(snapshot.get("name") + "ServiceTask");
-		this.service = snapshot.get("service");
+		super(snapshot);
+		this.service = CastUtil.safeCast(ServiceSnapshotConverter.getInstance().convert(snapshot.get(ServiceSnapshot.class, "service")));
 	}
 
 	@Override

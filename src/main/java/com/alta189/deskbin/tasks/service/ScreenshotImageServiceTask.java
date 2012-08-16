@@ -26,8 +26,6 @@ import java.awt.datatransfer.Transferable;
 import java.awt.image.BufferedImage;
 import java.util.List;
 
-import ch.swingfx.twinkle.NotificationBuilder;
-import ch.swingfx.twinkle.style.theme.DarkDefaultNotification;
 import com.alta189.deskbin.services.image.ImageService;
 import com.alta189.deskbin.services.image.ImageServiceException;
 import com.alta189.deskbin.tasks.Action;
@@ -37,32 +35,28 @@ import com.alta189.deskbin.util.OptionsMap;
 import com.alta189.deskbin.util.ScreenshotUtil;
 
 public class ScreenshotImageServiceTask extends ServiceTask<ImageService> {
-	private final OptionsMap options;
-
 	public ScreenshotImageServiceTask(ImageService service) {
 		this(service, new OptionsMap());
 	}
 
 	public ScreenshotImageServiceTask(ImageService service, OptionsMap options) {
-		super("ScreenshotImage", service);
-		this.options = options;
+		super(service);
+		setOptions(options);
 	}
 
 	public ScreenshotImageServiceTask(TaskSnapshot snapshot) {
 		super(snapshot);
-		this.options = snapshot.get("options", new OptionsMap());
 	}
 
 	@Override
 	public TaskSnapshot generateSnapshot() {
 		return super.generateSnapshot()
-				.add("version", 1)
-				.add("options", options);
+				.add("version", 1);
 	}
 
 	@Override
 	public void run() {
-		ScreenshotType screenshotType = ScreenshotType.getValue(options.get(String.class, "screenshot-type"));
+		ScreenshotType screenshotType = ScreenshotType.getValue(getOptions().get(String.class, "screenshot-type"));
 		String url = null;
 		switch (screenshotType) {
 			case MAIN_MONITOR:
@@ -79,7 +73,7 @@ public class ScreenshotImageServiceTask extends ServiceTask<ImageService> {
 				break;
 		}
 		if (url != null) {
-			Action action = Action.getValue(options.get(String.class, "action"));
+			Action action = Action.getValue(getOptions().get(String.class, "action"));
 			switch (action) {
 				case WRITE:
 					Keyboard.getInstance().type(url);
@@ -93,19 +87,6 @@ public class ScreenshotImageServiceTask extends ServiceTask<ImageService> {
 					notify("Screenshot taken and upload url(s) copied to the clipboard.");
 					break;
 			}
-		}
-	}
-
-	private void notify(String message) {
-		boolean notify = options.get("notify", true);
-		if (notify) {
-			int displayTime = options.get("notification-display-time", 3000);
-			new NotificationBuilder()
-					.withTitle("DeskBin")
-					.withStyle(new DarkDefaultNotification())
-					.withDisplayTime(displayTime)
-					.withMessage(message)
-					.showNotification();
 		}
 	}
 

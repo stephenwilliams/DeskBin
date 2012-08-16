@@ -19,16 +19,6 @@
  */
 package com.alta189.deskbin.tasks.service;
 
-import ch.swingfx.twinkle.NotificationBuilder;
-import ch.swingfx.twinkle.style.theme.DarkDefaultNotification;
-import com.alta189.deskbin.services.image.ImageService;
-import com.alta189.deskbin.services.image.ImageServiceException;
-import com.alta189.deskbin.tasks.Action;
-import com.alta189.deskbin.tasks.TaskSnapshot;
-import com.alta189.deskbin.util.CastUtil;
-import com.alta189.deskbin.util.Keyboard;
-import com.alta189.deskbin.util.OptionsMap;
-
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
@@ -38,21 +28,26 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-public class ImageFileServiceTask extends ServiceTask<ImageService> {
-	private final OptionsMap options;
+import com.alta189.deskbin.services.image.ImageService;
+import com.alta189.deskbin.services.image.ImageServiceException;
+import com.alta189.deskbin.tasks.Action;
+import com.alta189.deskbin.tasks.TaskSnapshot;
+import com.alta189.deskbin.util.CastUtil;
+import com.alta189.deskbin.util.Keyboard;
+import com.alta189.deskbin.util.OptionsMap;
 
+public class ImageFileServiceTask extends ServiceTask<ImageService> {
 	public ImageFileServiceTask(ImageService service) {
 		this(service, new OptionsMap());
 	}
 
 	public ImageFileServiceTask(ImageService service, OptionsMap options) {
-		super("ImageFile", service);
-		this.options = options;
+		super(service);
+		setOptions(options);
 	}
 
 	public ImageFileServiceTask(TaskSnapshot snapshot) {
 		super(snapshot);
-		this.options = snapshot.get("options", new OptionsMap());
 	}
 
 	@Override
@@ -76,7 +71,7 @@ public class ImageFileServiceTask extends ServiceTask<ImageService> {
 					try {
 						String urls = getService().upload(files);
 						boolean one = files.size() == 1;
-						switch (Action.getValue(options.get(String.class, "action"))) {
+						switch (Action.getValue(getOptions().get(String.class, "action"))) {
 							case WRITE:
 								notify(String.format("The image file%s been typed.", one ? "'s upload url has" : "s' upload urls have"));
 								Keyboard.getInstance().type(urls);
@@ -100,7 +95,7 @@ public class ImageFileServiceTask extends ServiceTask<ImageService> {
 	private boolean isImageFile(File file) {
 		String extension = getExtension(file);
 		if (extension != null && !extension.isEmpty()) {
-			 ImageFileTypes imt = ImageFileTypes.getValue(extension);
+			ImageFileTypes imt = ImageFileTypes.getValue(extension);
 			if (imt != null) {
 				return true;
 			}
@@ -121,19 +116,6 @@ public class ImageFileServiceTask extends ServiceTask<ImageService> {
 			return "";
 		}
 		return extension;
-	}
-
-	private void notify(String message) {
-		boolean notify = options.get("notify", true);
-		if (notify) {
-			int displayTime = options.get("notification-display-time", 3000);
-			new NotificationBuilder()
-					.withTitle("DeskBin")
-					.withStyle(new DarkDefaultNotification())
-					.withDisplayTime(displayTime)
-					.withMessage(message)
-					.showNotification();
-		}
 	}
 
 	public enum ImageFileTypes {

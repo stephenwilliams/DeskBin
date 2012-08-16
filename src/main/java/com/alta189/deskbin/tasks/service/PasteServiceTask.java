@@ -19,5 +19,26 @@
  */
 package com.alta189.deskbin.tasks.service;
 
-public class PasteServiceTask extends ServiceTask<> {
+import com.alta189.deskbin.services.paste.PasteService;
+import com.alta189.deskbin.tasks.TaskSnapshot;
+import com.alta189.deskbin.util.OptionsMap;
+
+public class PasteServiceTask extends ServiceTask<PasteService> {
+	public PasteServiceTask(PasteService service) {
+		this(service, new OptionsMap());
+	}
+
+	public PasteServiceTask(PasteService service, OptionsMap options) {
+		super(service);
+		setOptions(options);
+	}
+
+	public PasteServiceTask(TaskSnapshot snapshot) {
+		super(snapshot);
+		setOptions(snapshot.get("options", new OptionsMap()));
+	}
+
+	@Override
+	public void run() {
+	}
 }
