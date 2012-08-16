@@ -27,7 +27,7 @@ import java.awt.image.BufferedImage;
 import java.util.List;
 
 import ch.swingfx.twinkle.NotificationBuilder;
-
+import ch.swingfx.twinkle.style.theme.DarkDefaultNotification;
 import com.alta189.deskbin.services.image.ImageService;
 import com.alta189.deskbin.services.image.ImageServiceException;
 import com.alta189.deskbin.tasks.Action;
@@ -103,6 +103,7 @@ public class ScreenshotImageServiceTask extends ServiceTask<ImageService> {
 			int displayTime = options.get("notification-display-time", 3000);
 			new NotificationBuilder()
 					.withTitle("DeskBin")
+					.withStyle(new DarkDefaultNotification())
 					.withDisplayTime(displayTime)
 					.withMessage(message)
 					.showNotification();
