@@ -17,9 +17,11 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.alta189.deskbin.tasks;
+package com.alta189.deskbin.tasks.service;
 
 import com.alta189.deskbin.services.Service;
+import com.alta189.deskbin.tasks.Task;
+import com.alta189.deskbin.tasks.TaskSnapshot;
 
 public abstract class ServiceTask<T extends Service> extends Task {
 	private final T service;

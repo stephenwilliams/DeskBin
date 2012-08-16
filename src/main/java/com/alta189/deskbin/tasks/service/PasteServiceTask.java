@@ -19,5 +19,5 @@
  */
 package com.alta189.deskbin.tasks.service;
 
-public class PasteServiceTask {
+public class PasteServiceTask extends ServiceTask<> {
 }
