@@ -1,7 +1,7 @@
 /*
  * This file is part of DeskBin.
  *
- * Copyright (c) ${project.inceptionYear}-2012, alta189 <http://github.com/alta189/DeskBin/>
+ * Copyright (c) 2012, alta189 <http://github.com/alta189/DeskBin/>
  * DeskBin is licensed under the GNU Lesser General Public License.
  *
  * DeskBin is free software: you can redistribute it and/or modify

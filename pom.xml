@@ -7,6 +7,7 @@
 	<artifactId>deskbin</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<url>http://github.com/alta189/DeskBin</url>
+	<inceptionYear>2012</inceptionYear>
 	<properties>
 		<buildNumber>0</buildNumber>
 	</properties>
@@ -148,7 +149,7 @@
 						<url>${project.url}</url>
 						<license>GNU Lesser General Public License</license>
 						<licenseUrl>http://www.gnu.org/licenses/lgpl.html</licenseUrl>
-						<copyright>Copyright (c) ${project.inceptionYear}-2012, alta189</copyright>
+						<copyright>Copyright (c) ${project.inceptionYear}, alta189</copyright>
 					</properties>
 					<includes>
 						<include>src/main/java/**</include>
