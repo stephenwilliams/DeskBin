@@ -30,7 +30,7 @@ import org.eclipse.egit.github.core.client.GitHubClient;
 import com.alta189.deskbin.services.ServiceSnapshot;
 import com.alta189.deskbin.util.KeyStore;
 
-public class GistService extends AbstractPasteService {
+public class GistService extends PasteService {
 	private static final String NAME = "gist";
 	private final GitHubClient client;
 

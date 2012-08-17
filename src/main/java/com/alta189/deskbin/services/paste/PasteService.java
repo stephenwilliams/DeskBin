@@ -23,7 +23,9 @@ import com.alta189.deskbin.services.Service;
 
 public abstract class PasteService extends Service {
 
-	public abstract String paste(String content) throws PasteException;
+	public String paste(String content) throws PasteException {
+		return paste(content, true);
+	}
 
 	public abstract String paste(String content, boolean isPrivate) throws PasteException;
 

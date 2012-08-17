@@ -34,7 +34,7 @@ import org.json.JSONObject;
 
 import com.alta189.deskbin.services.ServiceSnapshot;
 
-public class HastebinService extends AbstractPasteService {
+public class HastebinService extends PasteService {
 	private static final String NAME = "hastebin";
 	private static final String URL = "http://hastebin.com/documents";
 

@@ -35,7 +35,7 @@ import org.apache.http.util.EntityUtils;
 import com.alta189.deskbin.services.ServiceSnapshot;
 import com.alta189.deskbin.util.KeyUtils;
 
-public class PastebinService extends AbstractPasteService {
+public class PastebinService extends PasteService {
 	private static final String NAME = "pastebin";
 	private static final String URL = "http://pastebin.com/api/api_post.php";
 	private final HttpClient client = new DefaultHttpClient();
