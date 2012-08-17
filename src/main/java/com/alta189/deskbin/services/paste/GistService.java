@@ -19,10 +19,14 @@
  */
 package com.alta189.deskbin.services.paste;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.io.FileUtils;
 import org.eclipse.egit.github.core.Gist;
 import org.eclipse.egit.github.core.GistFile;
 import org.eclipse.egit.github.core.client.GitHubClient;
@@ -30,7 +34,7 @@ import org.eclipse.egit.github.core.client.GitHubClient;
 import com.alta189.deskbin.services.ServiceSnapshot;
 import com.alta189.deskbin.util.KeyStore;
 
-public class GistService extends PasteService {
+public class GistService extends FilePasteService {
 	private static final String NAME = "gist";
 	private final GitHubClient client;
 
@@ -67,6 +71,40 @@ public class GistService extends PasteService {
 			service.createGist(gist);
 		} catch (IOException e) {
 			throw new PasteException(e);
+		}
+		return gist.getUrl();
+	}
+
+	@Override
+	public String paste(File file, boolean isPrivate) throws PasteException {
+		return paste(Collections.singletonList(file), isPrivate);
+	}
+
+	@Override
+	public String paste(List<File> files, boolean isPrivate) throws PasteException {
+		org.eclipse.egit.github.core.service.GistService service = new org.eclipse.egit.github.core.service.GistService(client);
+		Gist gist = new Gist();
+		gist.setPublic(!isPrivate);
+
+		Map<String, GistFile> gistFiles = new HashMap<String, GistFile>();
+		for (File file : files) {
+			GistFile gistFile = new GistFile();
+			gistFile.setFilename(file.getName());
+			try {
+				gistFile.setContent(FileUtils.readFileToString(file));
+				gistFiles.put(gistFile.getFilename(), gistFile);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
+		if (gistFiles.size() > 0) {
+			gist.setFiles(gistFiles);
+			try {
+				service.createGist(gist);
+			} catch (IOException e) {
+				throw new PasteException(e);
+			}
 		}
 		return gist.getUrl();
 	}

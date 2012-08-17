@@ -19,10 +19,13 @@
  */
 package com.alta189.deskbin.services.paste;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
@@ -35,7 +38,7 @@ import org.apache.http.util.EntityUtils;
 import com.alta189.deskbin.services.ServiceSnapshot;
 import com.alta189.deskbin.util.KeyUtils;
 
-public class PastebinService extends PasteService {
+public class PastebinService extends FilePasteService {
 	private static final String NAME = "pastebin";
 	private static final String URL = "http://pastebin.com/api/api_post.php";
 	private final HttpClient client = new DefaultHttpClient();
@@ -80,4 +83,32 @@ public class PastebinService extends PasteService {
 			throw new PasteException(e);
 		}
 	}
+
+	@Override
+	public String paste(File file, boolean isPrivate) throws PasteException {
+		if (file.exists()) {
+			try {
+				String contents = FileUtils.readFileToString(file, "UTF-8");
+				if (contents != null && !contents.isEmpty()) {
+					return paste(file, isPrivate);
+				}
+			} catch (IOException e) {
+				throw new PasteException(e);
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public String paste(List<File> files, boolean isPrivate) throws PasteException {
+		StringBuilder builder = new StringBuilder();
+		for (File file : files) {
+			String url = paste(file, isPrivate);
+			if (url != null && !url.isEmpty()) {
+				builder.append(url).append(" ");
+			}
+		}
+		return builder.toString();
+	}
+
 }

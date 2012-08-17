@@ -19,9 +19,13 @@
  */
 package com.alta189.deskbin.services.paste;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 
+import com.alta189.deskbin.services.ServiceSnapshot;
+import org.apache.commons.io.FileUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
@@ -32,9 +36,7 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.alta189.deskbin.services.ServiceSnapshot;
-
-public class HastebinService extends PasteService {
+public class HastebinService extends FilePasteService {
 	private static final String NAME = "hastebin";
 	private static final String URL = "http://hastebin.com/documents";
 
@@ -72,6 +74,33 @@ public class HastebinService extends PasteService {
 		} catch (JSONException e) {
 			throw new PasteException(e);
 		}
+	}
+
+	@Override
+	public String paste(File file, boolean isPrivate) throws PasteException {
+		if (file.exists()) {
+			try {
+				String contents = FileUtils.readFileToString(file, "UTF-8");
+				if (contents != null && !contents.isEmpty()) {
+					return paste(file, isPrivate);
+				}
+			} catch (IOException e) {
+				throw new PasteException(e);
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public String paste(List<File> files, boolean isPrivate) throws PasteException {
+		StringBuilder builder = new StringBuilder();
+		for (File file : files) {
+			String url = paste(file, isPrivate);
+			if (url != null && !url.isEmpty()) {
+				builder.append(url).append(" ");
+			}
+		}
+		return builder.toString();
 	}
 
 	public class Hastebin {
