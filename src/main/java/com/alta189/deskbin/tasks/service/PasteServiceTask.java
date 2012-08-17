@@ -19,8 +19,19 @@
  */
 package com.alta189.deskbin.tasks.service;
 
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.StringSelection;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.io.IOException;
+
+import com.alta189.deskbin.services.paste.PasteException;
 import com.alta189.deskbin.services.paste.PasteService;
+import com.alta189.deskbin.tasks.Action;
 import com.alta189.deskbin.tasks.TaskSnapshot;
+import com.alta189.deskbin.util.CastUtil;
+import com.alta189.deskbin.util.Keyboard;
 import com.alta189.deskbin.util.OptionsMap;
 
 public class PasteServiceTask extends ServiceTask<PasteService> {
@@ -40,5 +51,41 @@ public class PasteServiceTask extends ServiceTask<PasteService> {
 
 	@Override
 	public void run() {
+		String clipboard = getClipboardContents();
+		if (clipboard != null && !clipboard.isEmpty()) {
+			try {
+				String url = getService().paste(clipboard, getOptions().get("private", true));
+				if (url != null && !url.isEmpty()) {
+					switch (Action.getValue(getOptions().get(String.class, "action"))) {
+						case WRITE:
+							Keyboard.getInstance().type(url);
+							notify("The clipboard contents have uploaded and the url typed.");
+							break;
+						case CLIPBOARD:
+							Clipboard c = Toolkit.getDefaultToolkit().getSystemClipboard();
+							StringSelection stringSelection = new StringSelection(url);
+							c.setContents(stringSelection, null);
+							notify("The clipboard contents have uploaded and the clipboard set to the url.");
+							break;
+					}
+				}
+			} catch (PasteException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public String getClipboardContents() {
+		Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+		if (clipboard.isDataFlavorAvailable(DataFlavor.stringFlavor)) {
+			try {
+				return CastUtil.safeCast(clipboard.getData(DataFlavor.stringFlavor));
+			} catch (UnsupportedFlavorException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return null;
 	}
 }
