@@ -19,12 +19,16 @@
  */
 package com.alta189.deskbin.services.url;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import com.alta189.deskbin.services.ServiceSnapshot;
 import com.alta189.deskbin.util.KeyStore;
 import com.rosaloves.bitlyj.Bitly;
 
 public class BitLyService extends ShorteningService {
 	private static final String NAME = "bit.ly";
+	private static final Pattern pattern = Pattern.compile("(|http://|https://)(|www\\.)bit\\.ly/.*");
 	private final Bitly.Provider bitly;
 	private final String user;
 
@@ -60,5 +64,24 @@ public class BitLyService extends ShorteningService {
 		} catch (Exception e) {
 			throw new ShortenerException(e);
 		}
+	}
+
+	@Override
+	public Pattern getPattern() {
+		return pattern;
+	}
+
+	@Override
+	public boolean isShortenedURL(String url) {
+		return pattern.matcher(url).matches();
+	}
+
+	@Override
+	public String getShortURL(String input) {
+		Matcher matcher = pattern.matcher(input);
+		if (matcher.find()) {
+			return matcher.group();
+		}
+		return null;
 	}
 }

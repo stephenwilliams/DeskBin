@@ -22,6 +22,8 @@ package com.alta189.deskbin.services.url;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -34,6 +36,7 @@ import com.alta189.deskbin.services.ServiceSnapshot;
 
 public class IsGdService extends ShorteningService {
 	private static final String NAME = "is.gd";
+	private static final Pattern pattern = Pattern.compile("(|http://|https://)(|www\\.)is\\.gd/.*");
 	private static final String SHORTEN_URL = "http://is.gd/create.php?logstats=1&format=simple&url=";
 	private static final String EXPAND_URL = "http://is.gd/forward.php?format=simple&shorturl=";
 	private final HttpClient httpClient = new DefaultHttpClient();
@@ -92,5 +95,24 @@ public class IsGdService extends ShorteningService {
 			throw new ShortenerException(e);
 		}
 		return raw;
+	}
+
+	@Override
+	public Pattern getPattern() {
+		return pattern;
+	}
+
+	@Override
+	public boolean isShortenedURL(String url) {
+		return pattern.matcher(url).matches();
+	}
+
+	@Override
+	public String getShortURL(String input) {
+		Matcher matcher = pattern.matcher(input);
+		if (matcher.find()) {
+			return matcher.group();
+		}
+		return null;
 	}
 }

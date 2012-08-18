@@ -19,10 +19,18 @@
  */
 package com.alta189.deskbin.services.url;
 
+import java.util.regex.Pattern;
+
 import com.alta189.deskbin.services.Service;
 
 public abstract class ShorteningService extends Service {
 	public abstract String shorten(String url) throws ShortenerException;
 
 	public abstract String expand(String url) throws ShortenerException;
+
+	public abstract Pattern getPattern();
+
+	public abstract boolean isShortenedURL(String url);
+
+	public abstract String getShortURL(String input);
 }

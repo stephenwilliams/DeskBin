@@ -21,6 +21,8 @@ package com.alta189.deskbin.services.url;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import net.petersson.googl.GooGl;
 import net.petersson.googl.GooGlException;
@@ -30,6 +32,7 @@ import com.alta189.deskbin.util.KeyUtils;
 
 public class GooGlService extends ShorteningService {
 	private static final String NAME = "goo.gl";
+	private static final Pattern pattern = Pattern.compile("(|http://|https://)(|www\\.)goo\\.gl/.*");
 	private final GooGl googl;
 
 	public GooGlService() {
@@ -71,5 +74,24 @@ public class GooGlService extends ShorteningService {
 		} catch (GooGlException e) {
 			throw new ShortenerException(e);
 		}
+	}
+
+	@Override
+	public Pattern getPattern() {
+		return pattern;
+	}
+
+	@Override
+	public boolean isShortenedURL(String url) {
+		return pattern.matcher(url).matches();
+	}
+
+	@Override
+	public String getShortURL(String input) {
+		Matcher matcher = pattern.matcher(input);
+		if (matcher.find()) {
+			return matcher.group();
+		}
+		return null;
 	}
 }
