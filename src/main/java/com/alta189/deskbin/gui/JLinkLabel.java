@@ -61,6 +61,7 @@ public class JLinkLabel extends JLabel implements MouseListener {
 	}
 
 	public class JContextMenu extends JPopupMenu implements ActionListener {
+		private static final long serialVersionUID = -131370594209853446L;
 		private final JLinkLabel label;
 		private final JMenuItem copyText;
 		private final JMenuItem copyLink;
