@@ -24,19 +24,17 @@ public class TwitterAccountPanel extends AccountPanel {
 	private JLabel status;
 	private JLinkLabel authurl;
 	private JButton refresh;
+	private JButton logout;
 	
-    private Twitter twitter;
-    private RequestToken reqtoken;
+	private Twitter twitter;
+	private RequestToken reqtoken;
 	
 	@Override
 	protected void buildControls() {
 		twitter = new TwitterFactory().getInstance();
 		twitter.setOAuthConsumer(KeyUtils.getKey("twitter-consumerkey"), KeyUtils.getKey("twitter-consumersec"));
-	    try {
-			reqtoken = twitter.getOAuthRequestToken();
-		} catch (TwitterException e) {
-			throw new RuntimeException(e);
-		}
+		/* reqtoken is created whenever a token is needed */
+		reqtoken = null;
 		createFieldGroup("Twitter-Compatible Image Services");
 		status = new JLabel();
 		addField("Status",status);
@@ -47,7 +45,9 @@ public class TwitterAccountPanel extends AccountPanel {
 		addField("PIN",tokenentry);
 		refresh = new JButton();
 		addField(refresh);
-		refresh.addActionListener(new ActionListener(){
+		logout = new JButton("Remove Authorization");
+		addField(logout);
+		refresh.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -55,6 +55,19 @@ public class TwitterAccountPanel extends AccountPanel {
 			}
 			
 		});
+		logout.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				clearAccessToken();
+			}
+			
+		});
+		refreshInterface();
+	}
+	
+	private void clearAccessToken() {
+		KeyStore.remove("twitter-oauth");
 		refreshInterface();
 	}
 	
@@ -84,14 +97,23 @@ public class TwitterAccountPanel extends AccountPanel {
 				authurl.setURL(null);
 				tokenentry.setEnabled(false);
 				refresh.setText("Refresh Status");
+				logout.setEnabled(true);
 			}
 		}
 		if (token == null) {
 			status.setText("Not Authorized");
 			authurl.setText("Authorize with Twitter");
+			// request token needs to be recreated
+		    try {
+		    	twitter.setOAuthAccessToken(null);
+				reqtoken = twitter.getOAuthRequestToken();
+			} catch (TwitterException e) {
+				throw new RuntimeException(e);
+			}
 			authurl.setURL(reqtoken.getAuthorizationURL());
 			tokenentry.setEnabled(true);
 			refresh.setText("Refresh and Authorize");
+			logout.setEnabled(false);
 		}
 	}
 
