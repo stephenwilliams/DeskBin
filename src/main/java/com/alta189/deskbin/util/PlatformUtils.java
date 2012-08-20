@@ -22,8 +22,7 @@ package com.alta189.deskbin.util;
 import java.io.File;
 
 public class PlatformUtils {
-
-	private static final File workingDirectory = getWorkingDirectory("deskhub");
+	private static final File workingDirectory = getWorkingDirectory("deskbin");
 
 	public static File getWorkingDirectory() {
 		return workingDirectory;
