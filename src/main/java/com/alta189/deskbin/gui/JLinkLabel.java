@@ -12,6 +12,7 @@ import java.awt.event.MouseListener;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
+import javax.swing.UIManager;
 
 import com.alta189.deskbin.util.UIUtil;
 
@@ -19,14 +20,36 @@ public class JLinkLabel extends JLabel implements MouseListener {
 	private static final long serialVersionUID = -8160487889817317619L;
 	private String url;
 	private JContextMenu contextMenu;
+	
+	public JLinkLabel() {
+		super();
+		this.url = null;
+		this.contextMenu = new JContextMenu(this);
+		setStyles(false);
+	}
+	
+	public JLinkLabel(String text) {
+		this();
+		setText(text);
+	}
 
 	public JLinkLabel(String text, String url) {
 		super(text);
 		this.url = url;
 		contextMenu = new JContextMenu(this);
-		setForeground(Color.BLUE);
-		setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		addMouseListener(this);
+		setStyles(true);
+	}
+	
+	public String getURL() {
+		return url;
+	}
+	
+	public void setURL(String url) {
+		if (url == null || url.isEmpty())
+			this.url = null;
+		else
+			this.url = url;
+		setStyles(this.url != null);
 	}
 
 	public void mouseClicked(MouseEvent e) {
@@ -57,6 +80,18 @@ public class JLinkLabel extends JLabel implements MouseListener {
 	private void showPopup(MouseEvent e) {
 		if (e.isPopupTrigger()) {
 			contextMenu.show(e.getComponent(), e.getX(), e.getY());
+		}
+	}
+	
+	private void setStyles(boolean hasURL) {
+		if (hasURL) {
+			setForeground(Color.BLUE);
+			setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			addMouseListener(this);
+		} else {
+			setForeground(UIManager.getColor("Label.foreground"));
+			setCursor(Cursor.getDefaultCursor());
+			removeMouseListener(this);
 		}
 	}
 

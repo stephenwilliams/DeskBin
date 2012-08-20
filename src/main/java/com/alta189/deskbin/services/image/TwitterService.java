@@ -50,9 +50,7 @@ public class TwitterService extends ImageService {
 
 	public TwitterService(MediaProvider provider) {
 		twitterService = new TwitterFactory().getInstance();
-		String key = KeyUtils.getKey("twitter-consumerkey");
-		String secret = KeyUtils.getKey("twitter-consumersec");
-		twitterService.setOAuthConsumer(key, secret);
+		twitterService.setOAuthConsumer(KeyUtils.getKey("twitter-consumerkey"), KeyUtils.getKey("twitter-consumersec"));
 		AccessToken token = KeyStore.get("twitter-oauth");
 		twitterService.setOAuthAccessToken(token);
 	}
