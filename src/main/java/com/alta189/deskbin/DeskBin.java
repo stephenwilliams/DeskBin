@@ -21,7 +21,7 @@ package com.alta189.deskbin;
 
 import com.alta189.deskbin.util.yaml.YAMLProcessor;
 
-public class DeskHub {
+public class DeskBin {
 
 	public static YAMLProcessor getConfig() {
 		return null;

@@ -40,7 +40,7 @@ public class GistService extends FilePasteService {
 
 	public GistService() {
 		String oAuthToken = KeyStore.get("github-oauth-token");
-		client = new GitHubClient(oAuthToken);
+		client = new GitHubClient().setOAuth2Token(oAuthToken);
 	}
 
 	public GistService(ServiceSnapshot snapshot) {

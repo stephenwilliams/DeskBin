@@ -25,6 +25,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -33,18 +34,18 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 
+import com.alta189.deskbin.DeskBin;
 import com.alta189.deskbin.util.UIUtil;
+import com.alta189.deskbin.util.yaml.YAMLProcessor;
 
 public class OptionsDialog extends JDialog {
-
-	private JTable configsTable;
 	private JTabbedPane tabs;
 	private List<OptionsPanel> optionsPanels = new ArrayList<OptionsPanel>();
 
-	public OptionsDialog(String title) {
+	public OptionsDialog(String title, Map<String, OptionsPanel> optionsPanels) {
 		setTitle(title);
 		setResizable(false);
-		buildUserInterface();
+		buildUserInterface(optionsPanels);
 		pack();
 		setSize(400, 500);
 	}
@@ -54,7 +55,7 @@ public class OptionsDialog extends JDialog {
 		return panel;
 	}
 
-	public void buildUserInterface() {
+	public void buildUserInterface(Map<String, OptionsPanel> optionsPanels) {
 		final OptionsDialog self = this;
 
 		JPanel container = new JPanel();
@@ -62,7 +63,9 @@ public class OptionsDialog extends JDialog {
 		container.setLayout(new BorderLayout(3, 3));
 
 		tabs = new JTabbedPane();
-
+		for (String title : optionsPanels.keySet()) {
+			tabs.add(title, wrap(optionsPanels.get(title)));
+		}
 		container.add(tabs, BorderLayout.CENTER);
 
 		JPanel buttonsPanel = new JPanel();

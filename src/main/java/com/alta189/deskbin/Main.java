@@ -19,8 +19,21 @@
  */
 package com.alta189.deskbin;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import com.alta189.deskbin.gui.AccountsOptionPanel;
+import com.alta189.deskbin.gui.OptionsDialog;
+import com.alta189.deskbin.gui.OptionsPanel;
+import com.alta189.deskbin.util.UIUtil;
+
 public class Main {
 	public static void main(String[] args) {
-
+		// TEMP FOR TESTING GUI
+		UIUtil.setLookAndFeel();
+		Map<String, OptionsPanel> panels = new HashMap<String, OptionsPanel>();
+		panels.put("Account", new AccountsOptionPanel(DeskBin.getConfig()));
+		OptionsDialog dialog = new OptionsDialog("DeskBin", panels);
+		dialog.setVisible(true);
 	}
 }

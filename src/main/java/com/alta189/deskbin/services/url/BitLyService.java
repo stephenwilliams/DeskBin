@@ -32,10 +32,10 @@ public class BitLyService extends ShorteningService {
 	private final Bitly.Provider bitly;
 	private final String user;
 
-	public BitLyService(String user) {
-		String apiKey = KeyStore.get("bitly-" + user);
+	public BitLyService() {
+		user = KeyStore.get("bitly-user");
+		String apiKey = KeyStore.get("bitly-apikey");
 		bitly = Bitly.as(user, apiKey);
-		this.user = user;
 	}
 
 	@Override
@@ -45,7 +45,7 @@ public class BitLyService extends ShorteningService {
 
 	@Override
 	public ServiceSnapshot generateSnapshot() {
-		return new ServiceSnapshot(getClass()).add("user", user);
+		return new ServiceSnapshot(getClass());
 	}
 
 	@Override

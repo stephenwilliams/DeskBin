@@ -35,7 +35,7 @@ public class JmpService extends ShorteningService {
 	private final String user;
 
 	public JmpService(String user) {
-		String apiKey = KeyStore.get("jmp-" + user);
+		String apiKey = KeyStore.get("bitly-apikey");
 		jmp = Jmp.as(user, apiKey);
 		this.user = user;
 	}

@@ -120,7 +120,7 @@ public class KeyStore {
 				}
 			}
 
-			if (data != null && !data.isEmpty()) {
+			if (data == null || data.isEmpty()) {
 				return new ConcurrentHashMap<String, String>();
 			} else {
 				return CastUtil.safeCast(fromString(data));

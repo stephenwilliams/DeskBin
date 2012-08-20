@@ -33,13 +33,16 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public abstract class OptionsPanel extends JPanel {
+import com.alta189.deskbin.util.yaml.YAMLProcessor;
 
+public abstract class OptionsPanel extends JPanel {
+	private final YAMLProcessor settings;
 	protected GridBagConstraints fieldConstraints;
 	protected GridBagConstraints labelConstraints;
 	private JPanel groupPanel;
 
-	public OptionsPanel() {
+	public OptionsPanel(YAMLProcessor settings) {
+		this.settings = settings;
 		fieldConstraints = new GridBagConstraints();
 		fieldConstraints.fill = GridBagConstraints.HORIZONTAL;
 		fieldConstraints.weightx = 1.0;
@@ -128,5 +131,13 @@ public abstract class OptionsPanel extends JPanel {
 		layout.setConstraints(component, fieldConstraints);
 		parent.add(component);
 		return component;
+	}
+
+	public void createEmptySpace() {
+		add(new JLabel(" "));
+	}
+
+	public YAMLProcessor getSettings() {
+		return settings;
 	}
 }
