@@ -25,11 +25,13 @@ public class TwitterAccountPanel extends AccountPanel {
 
 	private Twitter twitter;
 	private RequestToken reqtoken;
+	private AccessToken acctoken;
 
 	@Override
 	protected void buildControls() {
 		twitter = new TwitterFactory().getInstance();
 		twitter.setOAuthConsumer(KeyUtils.getKey("twitter-consumerkey"), KeyUtils.getKey("twitter-consumersec"));
+		acctoken = KeyStore.get("twitter-oauth");
 		/* reqtoken is created whenever a token is needed */
 		reqtoken = null;
 		createFieldGroup("Twitter-Compatible Image Services");
@@ -62,29 +64,27 @@ public class TwitterAccountPanel extends AccountPanel {
 	}
 
 	private void clearAccessToken() {
-		KeyStore.remove("twitter-oauth");
+		acctoken = null;
 		refreshInterface();
 	}
 
 	private void refreshInterface() {
-		AccessToken token = KeyStore.get("twitter-oauth");
-		if (!tokenentry.getText().isEmpty()) {
+		if (acctoken == null && !tokenentry.getText().isEmpty()) {
 			try {
-				token = twitter.getOAuthAccessToken(reqtoken, tokenentry.getText());
-				KeyStore.store("twitter-oauth", token);
-				tokenentry.setText("");
+				acctoken = twitter.getOAuthAccessToken(reqtoken, tokenentry.getText());
+				tokenentry.setText("<verified : press OK to save>");
 			} catch (TwitterException e) {
-				token = null;
+				acctoken = null;
 			}
 		}
-		if (token != null) {
-			twitter.setOAuthAccessToken(token);
+		if (acctoken != null) {
+			twitter.setOAuthAccessToken(acctoken);
 			User user = null;
 			try {
 				user = twitter.verifyCredentials();
 			} catch (TwitterException e) {
 				if (e.getStatusCode() == 401) {
-					token = null;
+					acctoken = null;
 				}
 			}
 			if (user != null) {
@@ -96,7 +96,7 @@ public class TwitterAccountPanel extends AccountPanel {
 				logout.setEnabled(true);
 			}
 		}
-		if (token == null) {
+		if (acctoken == null) {
 			status.setText("Not Authorized");
 			authurl.setText("Authorize with Twitter");
 			// request token needs to be recreated
@@ -107,6 +107,7 @@ public class TwitterAccountPanel extends AccountPanel {
 				throw new RuntimeException(e);
 			}
 			authurl.setURL(reqtoken.getAuthorizationURL());
+			tokenentry.setText("");
 			tokenentry.setEnabled(true);
 			refresh.setText("Refresh and Authorize");
 			logout.setEnabled(false);
@@ -124,5 +125,6 @@ public class TwitterAccountPanel extends AccountPanel {
 
 	@Override
 	public void save() {
+		KeyStore.store("twitter-oauth", acctoken);
 	}
 }
