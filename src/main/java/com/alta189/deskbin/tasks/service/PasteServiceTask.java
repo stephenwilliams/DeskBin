@@ -26,11 +26,11 @@ import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
 
+import com.alta189.commons.util.CastUtil;
 import com.alta189.deskbin.services.paste.PasteException;
 import com.alta189.deskbin.services.paste.PasteService;
 import com.alta189.deskbin.tasks.Action;
 import com.alta189.deskbin.tasks.TaskSnapshot;
-import com.alta189.deskbin.util.CastUtil;
 import com.alta189.deskbin.util.Keyboard;
 import com.alta189.deskbin.util.OptionsMap;
 

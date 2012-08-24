@@ -32,7 +32,7 @@ import com.alta189.deskbin.tasks.Action;
 import com.alta189.deskbin.tasks.TaskSnapshot;
 import com.alta189.deskbin.util.Keyboard;
 import com.alta189.deskbin.util.OptionsMap;
-import com.alta189.deskbin.util.ScreenshotUtil;
+import com.alta189.commons.util.ScreenshotUtil;
 
 public class ScreenshotImageServiceTask extends ServiceTask<ImageService> {
 	public ScreenshotImageServiceTask(ImageService service) {

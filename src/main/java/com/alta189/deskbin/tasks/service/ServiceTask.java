@@ -24,7 +24,7 @@ import com.alta189.deskbin.services.ServiceSnapshot;
 import com.alta189.deskbin.services.ServiceSnapshotConverter;
 import com.alta189.deskbin.tasks.NotifiableTask;
 import com.alta189.deskbin.tasks.TaskSnapshot;
-import com.alta189.deskbin.util.CastUtil;
+import com.alta189.commons.util.CastUtil;
 
 public abstract class ServiceTask<T extends Service> extends NotifiableTask {
 	private final T service;

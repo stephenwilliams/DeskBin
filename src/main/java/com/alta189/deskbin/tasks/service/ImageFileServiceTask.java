@@ -32,7 +32,7 @@ import com.alta189.deskbin.services.image.ImageService;
 import com.alta189.deskbin.services.image.ImageServiceException;
 import com.alta189.deskbin.tasks.Action;
 import com.alta189.deskbin.tasks.TaskSnapshot;
-import com.alta189.deskbin.util.CastUtil;
+import com.alta189.commons.util.CastUtil;
 import com.alta189.deskbin.util.Keyboard;
 import com.alta189.deskbin.util.OptionsMap;
 

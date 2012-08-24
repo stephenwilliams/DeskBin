@@ -19,7 +19,7 @@
  */
 package com.alta189.deskbin;
 
-import com.alta189.deskbin.util.yaml.YAMLProcessor;
+import com.alta189.commons.yaml.YAMLProcessor;
 
 public class DeskBin {
 

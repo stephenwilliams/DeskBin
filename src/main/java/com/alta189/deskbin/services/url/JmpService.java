@@ -23,7 +23,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.alta189.deskbin.services.ServiceSnapshot;
-import com.alta189.deskbin.util.CastUtil;
+import com.alta189.commons.util.CastUtil;
 import com.alta189.deskbin.util.KeyStore;
 import com.rosaloves.bitlyj.Bitly;
 import com.rosaloves.bitlyj.Jmp;

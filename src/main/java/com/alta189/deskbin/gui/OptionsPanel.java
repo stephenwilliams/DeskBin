@@ -33,7 +33,7 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import com.alta189.deskbin.util.yaml.YAMLProcessor;
+import com.alta189.commons.yaml.YAMLProcessor;
 
 public abstract class OptionsPanel extends JPanel {
 	private final YAMLProcessor settings;

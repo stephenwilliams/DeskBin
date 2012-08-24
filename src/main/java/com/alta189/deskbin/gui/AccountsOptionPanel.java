@@ -7,11 +7,11 @@ import javax.swing.JList;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import com.alta189.commons.yaml.YAMLProcessor;
 import com.alta189.deskbin.gui.account.AccountPanel;
 import com.alta189.deskbin.gui.account.BitLyAccountPanel;
 import com.alta189.deskbin.gui.account.GithubAccountPanel;
 import com.alta189.deskbin.gui.account.TwitterAccountPanel;
-import com.alta189.deskbin.util.yaml.YAMLProcessor;
 
 public class AccountsOptionPanel extends OptionsPanel implements ListSelectionListener {
 	private static final long serialVersionUID = -2424416208776144054L;
