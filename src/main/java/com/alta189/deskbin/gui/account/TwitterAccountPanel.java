@@ -17,6 +17,7 @@ import twitter4j.auth.AccessToken;
 import twitter4j.auth.RequestToken;
 
 public class TwitterAccountPanel extends AccountPanel {
+	private static final long serialVersionUID = -8557808074636047365L;
 	private JTextField tokenentry;
 	private JLabel status;
 	private JLinkLabel authurl;
