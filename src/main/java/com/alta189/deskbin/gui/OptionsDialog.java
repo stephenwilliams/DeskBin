@@ -26,17 +26,13 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
-import javax.swing.JTable;
 
-import com.alta189.deskbin.DeskBin;
 import com.alta189.deskbin.util.UIUtil;
-import com.alta189.deskbin.util.yaml.YAMLProcessor;
 
 public class OptionsDialog extends JDialog {
 	private JTabbedPane tabs;
@@ -94,11 +90,10 @@ public class OptionsDialog extends JDialog {
 
 		add(container, BorderLayout.CENTER);
 	}
-	
+
 	public void save() {
 		for (OptionsPanel panel : optionsPanels) {
 			panel.save();
 		}
 	}
-
 }
